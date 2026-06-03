@@ -61,22 +61,28 @@
       <div class="bg-gradient-to-br from-purple-50 to-blue-50 border border-purple-100 rounded-2xl p-6 sm:p-8">
         <span class="inline-block text-xs font-semibold tracking-wide text-purple-700 bg-purple-100 rounded-full px-3 py-1 mb-3">Start here</span>
         <h2 class="text-2xl font-bold text-slate-900 mb-2">Install the skill</h2>
-        <p class="text-slate-600 mb-5">It installs like any Claude Code skill. Clone the repo and drop the folder into your skills directory.</p>
-        <div class="relative bg-slate-900 rounded-xl p-5 overflow-x-auto mb-5">
-          <button type="button" onclick="copyInstall(this)" aria-label="Copy install commands" class="absolute top-3 right-3 inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-md transition-colors">
+        <p class="text-slate-600 mb-4">Open your project in Claude Code (or Claude on the web) and paste this in. Claude installs the skill into the folder you are working in.</p>
+
+        <div class="relative bg-white border border-slate-200 rounded-xl p-5 pr-14 mb-3 shadow-sm">
+          <button type="button" onclick="copyCode(this)" aria-label="Copy prompt" class="absolute top-3 right-3 inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-slate-500 bg-slate-100 hover:bg-slate-200 rounded-md transition-colors">
             <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             <span class="copy-label">Copy</span>
           </button>
-<pre id="install-cmds" class="text-[13px] leading-relaxed text-slate-300"><span class="text-slate-500"># clone it</span>
-git clone https://github.com/johnbr0phy/course-builder.git
-
-<span class="text-slate-500"># install for every project</span>
-cp -r course-builder/course-builder ~/.claude/skills/
-
-<span class="text-slate-500"># or scope it to one repo</span>
-cp -r course-builder/course-builder /path/to/your/repo/.claude/skills/</pre>
+          <p class="js-copy-src text-slate-800 text-[15px] leading-relaxed">Install the Course Builder skill in this project. Clone https://github.com/johnbr0phy/course-builder, copy its course-builder/ folder into .claude/skills/course-builder/, then delete the clone. Tell me when SKILL.md is in place.</p>
         </div>
-        <p class="text-slate-600">Then open Claude Code and ask it to build a course. That is the whole setup.</p>
+        <p class="text-slate-500 text-sm mb-6">That lands the skill in <code class="text-[13px] bg-slate-100 px-1.5 py-0.5 rounded">.claude/skills/</code> for this project. Then just ask Claude to build a course.</p>
+
+        <details class="group">
+          <summary class="cursor-pointer text-sm font-medium text-slate-600 hover:text-purple-700 select-none">Prefer to run it in a terminal?</summary>
+          <div class="relative bg-slate-900 rounded-xl p-5 pr-14 overflow-x-auto mt-3">
+            <button type="button" onclick="copyCode(this)" aria-label="Copy command" class="absolute top-3 right-3 inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-md transition-colors">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <span class="copy-label">Copy</span>
+            </button>
+<pre class="js-copy-src text-[13px] leading-relaxed text-slate-300">git clone --depth 1 https://github.com/johnbr0phy/course-builder.git .cb-tmp && mkdir -p .claude/skills && cp -r .cb-tmp/course-builder .claude/skills/course-builder && rm -rf .cb-tmp</pre>
+          </div>
+          <p class="text-slate-500 text-sm mt-2">Run it from your project root. It installs into that project and cleans up after itself.</p>
+        </details>
         <div class="flex flex-wrap gap-3 mt-5">
           <a href="https://github.com/johnbr0phy/course-builder" class="inline-flex items-center gap-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-xl transition-colors">
             Get it on GitHub
@@ -168,9 +174,9 @@ cp -r course-builder/course-builder /path/to/your/repo/.claude/skills/</pre>
   </footer>
 
   <script>
-    function copyInstall(btn) {
-      var pre = document.getElementById('install-cmds');
-      var text = pre.innerText.trim();
+    function copyCode(btn) {
+      var src = btn.parentElement.querySelector('.js-copy-src');
+      var text = src.innerText.trim();
       var label = btn.querySelector('.copy-label');
       var done = function () {
         var prev = label.textContent;
