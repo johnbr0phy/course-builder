@@ -62,8 +62,12 @@
         <span class="inline-block text-xs font-semibold tracking-wide text-purple-700 bg-purple-100 rounded-full px-3 py-1 mb-3">Start here</span>
         <h2 class="text-2xl font-bold text-slate-900 mb-2">Install the skill</h2>
         <p class="text-slate-600 mb-5">It installs like any Claude Code skill. Clone the repo and drop the folder into your skills directory.</p>
-        <div class="bg-slate-900 rounded-xl p-5 overflow-x-auto mb-5">
-<pre class="text-[13px] leading-relaxed text-slate-300"><span class="text-slate-500"># clone it</span>
+        <div class="relative bg-slate-900 rounded-xl p-5 overflow-x-auto mb-5">
+          <button type="button" onclick="copyInstall(this)" aria-label="Copy install commands" class="absolute top-3 right-3 inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-md transition-colors">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            <span class="copy-label">Copy</span>
+          </button>
+<pre id="install-cmds" class="text-[13px] leading-relaxed text-slate-300"><span class="text-slate-500"># clone it</span>
 git clone https://github.com/johnbr0phy/course-builder.git
 
 <span class="text-slate-500"># install for every project</span>
@@ -162,6 +166,34 @@ cp -r course-builder/course-builder /path/to/your/repo/.claude/skills/</pre>
       <a href="https://github.com/johnbr0phy/course-builder" class="hover:text-slate-800">github.com/johnbr0phy/course-builder</a>
     </div>
   </footer>
+
+  <script>
+    function copyInstall(btn) {
+      var pre = document.getElementById('install-cmds');
+      var text = pre.innerText.trim();
+      var label = btn.querySelector('.copy-label');
+      var done = function () {
+        var prev = label.textContent;
+        label.textContent = 'Copied';
+        setTimeout(function () { label.textContent = prev; }, 2000);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text, done); });
+      } else {
+        fallbackCopy(text, done);
+      }
+    }
+    function fallbackCopy(text, done) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); done(); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+  </script>
 
 </body>
 </html>
