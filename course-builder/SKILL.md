@@ -38,6 +38,11 @@ Templates live in `templates/`; the homepage shell and CI workflow in `assets/`.
 Use whatever the user already gave you; only ask for what's missing. Ask briefly,
 grouped, and don't interrogate — infer sane defaults and confirm.
 
+**Always ask questions with the AskUserQuestion tool** — never as plain chat text.
+Offer sensible options with your inferred default first; the user can always type
+their own answer. Group related questions into one call (up to 4). If the tool
+isn't available in the current environment, fall back to asking in chat.
+
 Collect:
 1. **Topic / subject** of the course.
 2. **Source material** — the authoritative content the course must stay accurate
@@ -64,7 +69,8 @@ Collect:
 Draft a session list: title + one-line description per session, grouped into
 phases, with the final session as a capstone that ships the learner's running
 example. State the running example and where exercises will be practiced. Get a
-quick thumbs-up (and let them adjust) **before** writing full content.
+quick thumbs-up (and let them adjust) **before** writing full content — confirm
+via AskUserQuestion (e.g. "Looks good / Adjust sessions / Change scope").
 
 ## Step 3 — Generate the course folder
 

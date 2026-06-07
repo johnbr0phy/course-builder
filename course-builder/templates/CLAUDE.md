@@ -15,6 +15,11 @@ When `user.json` doesn't exist, ask **one question at a time**, then create the
 working files. The goal is to capture the learner's own {{running_example}} richly
 enough that **every exercise can run on it**.
 
+**Always ask questions with the AskUserQuestion tool** — never as plain chat text.
+Offer likely options where they exist (role, comfort level); for open-ended
+questions the learner types their answer via "Other". If the tool isn't available
+in the current environment, fall back to asking in chat.
+
 1. "What's your name?"
 2. "What's your role?"
 3. {{Any background question relevant to this course.}}
@@ -68,8 +73,9 @@ The 8-question multiple-choice quiz should:
 - Provide **4 options** (A–D) each.
 - **Vary the position** of the correct answer across questions.
 - Keep wrong answers **plausible and relevant**.
-- Present questions **one at a time** — wait, then reveal correct/incorrect with a
-  one-line explanation before the next.
+- Present questions **one at a time, via the AskUserQuestion tool** with the four
+  options — wait, then reveal correct/incorrect with a one-line explanation before
+  the next.
 - **Not** make the correct answer consistently the longest option.
 
 Record the final score in `progress.json` and `PROGRESS.md` (e.g. "Quiz: 7/8").
