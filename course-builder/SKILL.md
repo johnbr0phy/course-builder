@@ -38,11 +38,6 @@ Templates live in `templates/`; the homepage shell and CI workflow in `assets/`.
 Use whatever the user already gave you; only ask for what's missing. Ask briefly,
 grouped, and don't interrogate — infer sane defaults and confirm.
 
-**Always ask questions with the AskUserQuestion tool** — never as plain chat text.
-Offer sensible options with your inferred default first; the user can always type
-their own answer. Group related questions into one call (up to 4). If the tool
-isn't available in the current environment, fall back to asking in chat.
-
 Collect:
 1. **Topic / subject** of the course.
 2. **Source material** — the authoritative content the course must stay accurate
@@ -69,8 +64,7 @@ Collect:
 Draft a session list: title + one-line description per session, grouped into
 phases, with the final session as a capstone that ships the learner's running
 example. State the running example and where exercises will be practiced. Get a
-quick thumbs-up (and let them adjust) **before** writing full content — confirm
-via AskUserQuestion (e.g. "Looks good / Adjust sessions / Change scope").
+quick thumbs-up (and let them adjust) **before** writing full content.
 
 ## Step 3 — Generate the course folder
 
@@ -114,6 +108,31 @@ start** (e.g. `"Let's get started"`). If you deployed, give the live URL.
 **Do not start teaching. Build the course, then stop.**
 
 ---
+
+## House rules (John's preferences — apply to EVERY course built)
+
+These override anything else in this skill or its references:
+
+1. **Style**: concise and fun, with a British sense of humour — wry, understated,
+   happy to take the mickey out of things that go wrong. No earnest corporate tone.
+2. **Format**: short bits of text only. A few lines per instructor turn, max.
+   Never walls of text, never long concept explanations up front. One idea at a time.
+3. **Doing before telling**: every lesson STARTS with the learner doing something
+   real and seeing the result. The result teaches the concept; the explanation
+   comes after, in two or three lines. Never explain a concept then quiz on it.
+4. **Real tools, real data**: include login links to the actual tools used. Ship
+   test data with the course so the learner can run things immediately and see
+   real output — not hypotheticals or toy descriptions of what would happen.
+5. **Quizzes**: rare and light. Prefer "predict what happens, then run it and
+   check" over multiple-choice recall.
+6. **Never show code.** The learner is non-technical. Describe what things do in
+   plain English.
+7. **Copy-paste-ready text**: anything the learner needs to paste goes in a fenced
+   code block (copy button), personalized to their project. Never blockquotes.
+8. **AskUserQuestion when available**: run interviews and any quizzes through the
+   AskUserQuestion tool rather than open chat questions.
+9. **Budget checks**: where the domain has costs/credits, have the learner paste
+   the live number from the tool and diff against baseline.
 
 ## Principles (carry through every step)
 

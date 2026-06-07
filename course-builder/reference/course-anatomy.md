@@ -38,18 +38,18 @@ Top of file: name the lesson format and list the cross-cutting guardrails the
 instructor enforces in every exercise. Then a section per phase, a subsection per
 session. **Every session includes all six parts:**
 
-1. **Concept** — what it is, in a few tight sentences. Bold the key terms.
-2. **Start with WHY** — why this matters / the problem it solves, before mechanics.
-3. **Exercise(s)** — one or two hands-on tasks native to the practice environment.
-   The learner DOES something and reports back what they saw. Make them concrete
-   and runnable. Any scripts, prompts, or sample inputs the exercise needs ship
-   **copy-paste-ready in fenced code blocks** (never blockquotes) — learners don't
-   write their own test material. Add any safety/cost warning the domain needs.
+1. **Do This First** — the session OPENS with the learner doing something real and
+   seeing the result. Concrete, runnable, on real tools with shipped test data.
+   Include login links. Add any safety/cost warning the domain needs.
+2. **What Just Happened** — two or three lines explaining the result they just saw.
+   The result teaches the concept; this names it. Bold the key terms. Never a wall
+   of text, never theory before the doing.
+3. **Why It Matters** — one short paragraph, tied to their running example.
 4. **Key Tradeoff** — the honest "this vs that"; when NOT to use it counts too.
 5. **Apply to Your Work** — update the relevant line in `MY_<THING>.md`, tying the
    session's concept to the learner's running example.
-6. **Quiz bank** — ~8 question→answer pairs covering the session's core concepts,
-   from which the instructor builds the live quiz.
+6. **Check bank** — a handful of "predict what happens, then run it and check"
+   prompts the instructor can draw from. Light, rare, hands-on — not recall drills.
 
 Keep it practical and short. Concepts ground out in the running example and the
 source material, never abstract theory for its own sake.
@@ -75,33 +75,28 @@ Must contain these sections:
 - **Personalize every exercise** rule: once `user.json` exists, rewrite each
   exercise around the learner's real running example; the generic prompts in
   `LESSONS.md` are fallbacks only.
-- **Exercise materials rule**: the instructor always generates copy-paste-ready
-  text (scripts, prompts, inputs), personalized to the learner's running example,
-  in fenced code blocks — never blockquotes; learners never write their own.
-- **AskUserQuestion note**: in environments with the AskUserQuestion tool, use it
-  for setup questions and quiz answers — multiple-choice beats open questions;
-  fall back to chat otherwise.
-- **Credit check** (only if the practice environment has metered credits/usage):
-  at session start and after costly exercises, the learner pastes their current
-  usage figures; the instructor diffs against the last reading, logs it, and flags
-  unusual burn.
 - **Guardrails**: any domain-specific cost/safety rules to enforce in exercises.
-- **Teaching philosophy**: hands-on over lecture; proceed deliberately; keep
-  replies short (learners skim); one exercise at a time, ending every message with
-  the single thing to report back; ground everything in the running example;
-  surface tradeoffs; knowing when NOT to use a thing is a first-class goal.
+- **Teaching philosophy**: hands-on over lecture; proceed deliberately; stay
+  concise; ground everything in the running example; surface tradeoffs; knowing
+  when NOT to use a thing is a first-class goal.
+- **Delivery style**: concise and fun with a wry, understated British sense of
+  humour — take the mickey out of things that go wrong, never earnest corporate
+  tone. A few lines per turn, max; one idea at a time. Doing before telling,
+  always. Never show code — describe what things do in plain English. Anything
+  paste-able goes in a fenced code block, personalized. Use AskUserQuestion for
+  interviews and checks when available.
 
-## Quiz rules (copy into every CLAUDE.md)
+## Check rules (copy into every CLAUDE.md)
 
-The 8-question multiple-choice quiz must:
-- Have **8 questions**, presented **one at a time** (wait for each answer, then say
-  correct/incorrect with a one-line why before the next).
-- Give **4 options** (A–D) each.
-- **Vary the position** of the correct answer across questions.
-- Keep wrong answers **plausible and relevant**.
-- **Not** make the correct answer consistently the longest option.
-- Draw from the session's **Quiz bank** in `LESSONS.md` (rephrase/shuffle freely).
-- Record the score in `progress.json` and `PROGRESS.md` (e.g. "Quiz: 7/8").
+Checks are rare and light — not an exam at the end of every session:
+- Prefer **"predict, then run, then compare"**: the learner says what they expect,
+  runs the real thing, and reconciles the difference. The gap is the lesson.
+- One or two checks per session, woven into the doing — never a quiz block.
+- Draw from the session's **Check bank** in `LESSONS.md` (adapt freely to the
+  learner's running example).
+- If the AskUserQuestion tool is available, use it for the predict step.
+- Note the outcome in `progress.json` and `PROGRESS.md` (e.g. "Checks: predicted
+  Flash cheaper, confirmed").
 
 ## Tracking files
 
