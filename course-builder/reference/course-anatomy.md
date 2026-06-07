@@ -42,7 +42,9 @@ session. **Every session includes all six parts:**
 2. **Start with WHY** — why this matters / the problem it solves, before mechanics.
 3. **Exercise(s)** — one or two hands-on tasks native to the practice environment.
    The learner DOES something and reports back what they saw. Make them concrete
-   and runnable. Add any safety/cost warning the domain needs.
+   and runnable. Any scripts, prompts, or sample inputs the exercise needs ship
+   **copy-paste-ready in fenced code blocks** (never blockquotes) — learners don't
+   write their own test material. Add any safety/cost warning the domain needs.
 4. **Key Tradeoff** — the honest "this vs that"; when NOT to use it counts too.
 5. **Apply to Your Work** — update the relevant line in `MY_<THING>.md`, tying the
    session's concept to the learner's running example.
@@ -73,10 +75,21 @@ Must contain these sections:
 - **Personalize every exercise** rule: once `user.json` exists, rewrite each
   exercise around the learner's real running example; the generic prompts in
   `LESSONS.md` are fallbacks only.
+- **Exercise materials rule**: the instructor always generates copy-paste-ready
+  text (scripts, prompts, inputs), personalized to the learner's running example,
+  in fenced code blocks — never blockquotes; learners never write their own.
+- **AskUserQuestion note**: in environments with the AskUserQuestion tool, use it
+  for setup questions and quiz answers — multiple-choice beats open questions;
+  fall back to chat otherwise.
+- **Credit check** (only if the practice environment has metered credits/usage):
+  at session start and after costly exercises, the learner pastes their current
+  usage figures; the instructor diffs against the last reading, logs it, and flags
+  unusual burn.
 - **Guardrails**: any domain-specific cost/safety rules to enforce in exercises.
-- **Teaching philosophy**: hands-on over lecture; proceed deliberately; stay
-  concise; ground everything in the running example; surface tradeoffs; knowing
-  when NOT to use a thing is a first-class goal.
+- **Teaching philosophy**: hands-on over lecture; proceed deliberately; keep
+  replies short (learners skim); one exercise at a time, ending every message with
+  the single thing to report back; ground everything in the running example;
+  surface tradeoffs; knowing when NOT to use a thing is a first-class goal.
 
 ## Quiz rules (copy into every CLAUDE.md)
 

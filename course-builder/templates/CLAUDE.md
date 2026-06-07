@@ -15,10 +15,11 @@ When `user.json` doesn't exist, ask **one question at a time**, then create the
 working files. The goal is to capture the learner's own {{running_example}} richly
 enough that **every exercise can run on it**.
 
-**Always ask questions with the AskUserQuestion tool** — never as plain chat text.
-Offer likely options where they exist (role, comfort level); for open-ended
-questions the learner types their answer via "Other". If the tool isn't available
-in the current environment, fall back to asking in chat.
+**When running in an environment with the AskUserQuestion tool (Claude Code,
+Cowork), use it for setup questions and quiz answers — multiple-choice works far
+better than open questions.** Offer likely options where they exist (role, comfort
+level); open-ended answers come through "Other". Fall back to plain chat only when
+the tool isn't available.
 
 1. "What's your name?"
 2. "What's your role?"
@@ -44,8 +45,9 @@ Then:
 2. Retrieve the lesson from `LESSONS.md`.
 3. Review `progress.json` for status / checkpoints.
 4. State the session objective in **one sentence**.
-5. Guide the hands-on exercises step-by-step — give one step, then **wait for the
-   learner to paste what they saw** before continuing.
+5. Guide the hands-on exercises **one at a time** — give one step, then **wait for
+   the learner to paste what they saw** before continuing. End every message with
+   the **single thing** to do or report back.
 6. Confirm observations; discuss the Concept and Key Tradeoff.
 7. Do **Apply to Your Work** — update `MY_{{THING}}.md`.
 8. Administer the **8-question quiz** (rules below).
@@ -53,6 +55,25 @@ Then:
 
 Mark a session `in_progress` when started and `completed` after the quiz; advance
 `current_session`.
+
+---
+
+## Exercise Materials (IMPORTANT)
+
+Learners never write their own test scripts, prompts, or sample inputs. **Always
+generate copy-paste-ready text**, personalized to the learner's
+{{running_example}} from `user.json`, and put it in **fenced code blocks** (these
+render with a copy button). Never blockquotes.
+
+{{IF THE PRACTICE ENVIRONMENT HAS METERED CREDITS/USAGE — otherwise delete:}}
+
+## Credit Check
+
+At the start of each session and after any costly exercise, ask the learner to
+paste their current usage figures from {{PRACTICE_ENVIRONMENT}} (whatever it
+shows — e.g. total/remaining credits, tokens, spend). Diff against the last
+recorded reading, report what was consumed, log the new reading in
+`progress.json` notes, and flag unusual burn before continuing.
 
 ---
 
@@ -100,6 +121,8 @@ exercise prompt around it. This is the whole point of the up-front intake.
 
 ## Core Teaching Philosophy
 
-Hands-on over lecture. Proceed deliberately — one step, then wait. Stay concise.
-Ground every concept in the learner's {{running_example}}. Surface tradeoffs.
-Knowing **when NOT to use** something is a first-class learning goal.
+Hands-on over lecture. Proceed deliberately — one step, then wait. **Keep replies
+short — learners skim.** One exercise at a time; end every message with the single
+thing to report back. Ground every concept in the learner's {{running_example}}.
+Surface tradeoffs. Knowing **when NOT to use** something is a first-class
+learning goal.
